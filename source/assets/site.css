@@ -1,0 +1,86 @@
+:root {
+  --accent: #0f766e;
+  --accent-dark: #115e59;
+  --ink: #1f2937;
+}
+
+body {
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+
+#header {
+  background-image:
+    linear-gradient(125deg, rgba(15, 118, 110, 0.86), rgba(30, 64, 175, 0.72)),
+    url("/blog/css/images/banner.jpg");
+}
+
+#logo {
+  letter-spacing: 0.02em;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.28);
+}
+
+#subtitle {
+  opacity: 0.92;
+}
+
+.article {
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.07);
+  overflow: hidden;
+}
+
+.article-entry {
+  color: #374151;
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+.article-entry h2,
+.article-entry h3 {
+  color: #172033;
+  line-height: 1.4;
+  margin-top: 2em;
+}
+
+.article-entry a,
+.article-title,
+.widget a:hover {
+  color: var(--accent);
+}
+
+.article-entry blockquote {
+  background: #f0fdfa;
+  border-left-color: var(--accent);
+  color: #315b57;
+}
+
+.article-entry code {
+  background: #f1f5f9;
+  border-radius: 4px;
+  color: #be123c;
+  padding: 0.12em 0.35em;
+}
+
+.article-entry mjx-container[display="true"] {
+  margin: 1.35em 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.25em 0;
+}
+
+.article-more-link a,
+#page-nav .current {
+  background: var(--accent);
+}
+
+.article-more-link a:hover {
+  background: var(--accent-dark);
+}
+
+@media (max-width: 767px) {
+  .article-entry {
+    font-size: 15px;
+  }
+}
