@@ -1,9 +1,3 @@
----
-title: Linear attention & Test time training
-date: 2026-06-29 17:30:00
-updated: 2026-06-30 00:00:00
----
-
 ## Linear Attention
 
 回忆一下self-attention 的公式
