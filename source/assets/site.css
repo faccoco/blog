@@ -63,7 +63,7 @@ body {
   padding: 0.12em 0.35em;
 }
 
-.article-entry mjx-container[display="true"] {
+.article-entry .katex-display {
   margin: 1.35em 0;
   overflow-x: auto;
   overflow-y: hidden;

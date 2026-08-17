@@ -60,6 +60,19 @@ prismjs:
   line_number: true
   tab_replace: ''
 
+# Markdown and LaTeX
+markdown:
+  render:
+    html: true
+    xhtmlOut: false
+    breaks: false
+    linkify: true
+    typographer: false
+  plugins:
+    - name: '@renbaoshuo/markdown-it-katex'
+      options:
+        throwOnError: true
+
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
 # per_page: Posts displayed per page. (0 = disable pagination)

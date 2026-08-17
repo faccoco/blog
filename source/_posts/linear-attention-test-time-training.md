@@ -15,8 +15,10 @@ $$
 可以展开为 $\phi(x)^T\phi(y)$, 其中
 
 $$
+\begin{aligned}
 \phi(x)=[x^2, \sqrt{2c}x, c] \\
 \phi(y)=[y^2, \sqrt{2c}y, c]
+\end{aligned}
 $$
 
 一个自然的想法是: self-attention中的softmax算子能不能拆分为类似的核函数? 如果能的话, 原式子能拆分成 $\frac{\phi(Q)\phi(K)^T}{\sqrt{d}}V$ → $\frac{\phi(Q)(\phi(K)^TV)}{\sqrt{d}}$, 最大的matrix shape从n x n变为了d x d (d为feature dim).
