@@ -1,0 +1,99 @@
+# blogs/sync.yml — 草稿同步配置（手工维护）
+#
+# 顶层 key 对应 blogs/ 下的目录名（系列）或 .md 文件名（单篇）。
+# 系列目录内的章节文件须命名为 <任意名>(N).md。
+#
+# 必填字段:
+#   series:  prefix(章节 slug 前缀) / chapters(N -> slug 后缀) / categories / tags
+#   single:  slug / categories / tags
+# 可选字段:
+#   pad:        章节号补零位数（默认 0；slug 形如 <prefix>-<N>-<suffix>）
+#   title:      章节标题（默认取正文第一行 H1）
+#   description / date: 文章描述与首发日期（默认 mtime）
+#   images:     {图片文件名: {dest: 目标文件名, alt: 替换 alt 文本}}
+#   skip: true  忽略该条目（如空占位文件）
+#
+# 日常用法:
+#   pnpm sync:blogs          # 同步 + 本地构建验证
+#   pnpm sync:blogs --push   # 同步 + 构建 + 提交推送（触发 Pages 部署）
+
+items:
+  训练的GPU老是占不满该怎么办?:
+    prefix: gpu-util
+    pad: 2
+    categories: [深度学习]
+    tags: [GPU, PyTorch, CUDA, 性能优化, DDP, FSDP]
+    chapters:
+      0:
+        slug: overview
+        title: "训练的 GPU 老是占不满该怎么办？（总览）"
+        description: 系列总览：先看懂 GPU-Util 与功耗两块仪表盘，再用 Profiler 时间线定位病灶，把 GPU 空闲归因为数据饥饿、同步与 launch 开销、kernel 太碎、显存受限四大根因，逐章给药方，最后扩展到多卡 DDP/FSDP。
+        date: "2026-09-11 07:20:00"
+      1:
+        slug: metrics
+        title: "训练的 GPU 老是占不满该怎么办？（一）GPU 利用率与功耗指标解读"
+        description: 看懂 nvidia-smi 这块仪表盘：GPU-Util 的采样机制与常见误读、功耗这个最诚实的干活强度指标、Occupancy 上座率，以及伴随指标要怎么看。
+        date: "2026-09-11 07:21:00"
+      2:
+        slug: profiler
+        title: "训练的 GPU 老是占不满该怎么办？（二）Profiler 时间线诊断"
+        description: 用 PyTorch Profiler 给训练拍“CT”：三行核心代码拍片，认识时间线的构成，学会按空洞形状把病分成三类：等数据、等 CPU、等同步。
+        date: "2026-09-11 07:22:00"
+      3:
+        slug: decision-tree
+        title: "训练的 GPU 老是占不满该怎么办？（三）四大根因与排查决策树"
+        description: 把 GPU 空闲归因为四大根因——数据饥饿、隐形等待、kernel 太碎、显存受限，并画出按空洞形状分流的排查决策树，回答“到底该先修哪个”。
+        date: "2026-09-11 07:23:00"
+      4:
+        slug: data-pipeline
+        title: "训练的 GPU 老是占不满该怎么办？（四）数据流水线优化"
+        description: 治疗数据饥饿：多进程预取、num_workers 的取值、pin_memory 与 persistent_workers、给 CPU 减负，以及数据预打包这个性价比之王。
+        date: "2026-09-11 07:24:00"
+      5:
+        slug: sync-launch
+        title: "训练的 GPU 老是占不满该怎么办？（五）同步点与 launch 开销"
+        description: 拆掉 CPU 与 GPU 之间的手铐：理解 PyTorch 的异步执行，识别触发同步的操作，降频握手、把判断逻辑搬上 GPU，再用 CUDA Graph 摊平 launch 开销。
+        date: "2026-09-11 07:25:00"
+      6:
+        slug: kernel-fusion
+        title: "训练的 GPU 老是占不满该怎么办？（六）算子融合"
+        description: 治疗 kernel 太碎：用 torch.compile 整体编译融合、高效算子替换、干掉 Python 循环，解决 util 接近 100% 但功耗上不去的“假满载”。
+        date: "2026-09-11 07:26:00"
+      7:
+        slug: memory-batch
+        title: "训练的 GPU 老是占不满该怎么办？（七）显存腾挪与 batch 放大"
+        description: 显存腾挪三部曲：先记账显存都去哪了，再用混合精度 AMP、梯度检查点、碎片治理腾出空间，最后换成更大的 batch——并避开梯度累积 ≠ 大 batch 的坑。
+        date: "2026-09-11 07:27:00"
+      8:
+        slug: ddp-fsdp
+        title: "训练的 GPU 老是占不满该怎么办？（八）多卡并行 DDP 与 FSDP"
+        description: 单卡满载后的横向扩展：DDP 三行代码入门与四个常见坑、怎么判断通信成了瓶颈，以及模型放不下单卡时的 FSDP。
+        date: "2026-09-11 07:28:00"
+
+  人月神话-读书笔记的读书笔记:
+    prefix: mythical-man-month
+    categories: [读书笔记]
+    tags: [人月神话, 软件工程, Brooks]
+    chapters:
+      1:
+        slug: tar-pit
+        title: "[人月神话 1: 焦油坑] 读书笔记的读书笔记"
+        description: 《人月神话》系列笔记开篇：书的背景，以及“人月”这个工作量单位的含义。
+        date: "2026-09-10 18:28:12"
+      2:
+        slug: surgical-team
+        title: "[人月神话 2: 外科手术队伍] 读书笔记的读书笔记"
+        description: 协作的代价、Mills 的外科手术团队类比、两个披萨原则，以及画蛇添足（第二系统效应）。
+        date: "2026-09-10 18:48:43"
+        images:
+          image.png:
+            dest: mythical-man-month-2.png
+            alt: Mills 的外科手术团队
+      3:
+        slug: babel-tower
+        title: "[人月神话 3: 巴比伦塔的失败] 读书笔记的读书笔记"
+        description: 贯彻执行（Passing the word）：手册、形式化定义与叙述性描述、周会与年度会议——概念如何传递到每一位实现者。
+        date: "2026-09-11 02:02:27"
+
+  reverse-loop-back.md:
+    skip: true   # 空占位文件，暂不同步
